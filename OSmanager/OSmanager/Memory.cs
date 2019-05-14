@@ -14,7 +14,10 @@ namespace OSmanager
 
         private int BusyPages;
 
+        private int LastSize;
+
         public int _Capacity { get; private set; }
+
         public int _SizePages { get; private set; }
 
         public Memory(int SizePages)
@@ -32,18 +35,31 @@ namespace OSmanager
         public bool SpaceWritable(int Size)
         {
             double Busy = Size / _SizePages;
+            Busy = Math.Ceiling(Busy);
 
-            if (BusyPages + Math.Ceiling(Busy) < TotalPages)
+            if (BusyPages + Busy < TotalPages)
+            {
+                LastSize = BusyPages;
+                BusyPages +=  Convert.ToInt32(Busy);
                 return true;
+            }
             else
                 return false;
         }
 
 
-        public void InitializeProcess(Process MyProcess)
+        public bool InitializeProcess(Process MyProcess)
         {
             if (SpaceWritable(MyProcess._Size))
-                Ram.Enqueue(MyProcess);                
+            {
+                for (int i = 0; i < LastSize; i++)
+                    Ram.Enqueue(MyProcess);
+
+                return true;
+            }
+            else
+                return false;
+        
         }
 
         public void KillProcess(Process MyProcess)
@@ -51,5 +67,9 @@ namespace OSmanager
             Ram.Dequeue();
         }
 
+        public Queue<Process> Queue()
+        {
+            return Ram;
+        }
     }
 }

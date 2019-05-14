@@ -19,5 +19,20 @@ namespace OSmanager
             _Size = Size;
             Status = "Waiting";
         }
+
+        public bool Ready()
+        {
+            return TimeExecuted == 0;
+        }
+
+        public void ReduceTime()
+        {
+            TimeExecuted = -1;
+        }
+
+        public void SetReady()
+        {
+            Status = "Ready";
+        }
     }
 }

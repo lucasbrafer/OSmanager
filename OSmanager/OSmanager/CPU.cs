@@ -2,19 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace OSmanager
 {
     class CPU
     {
-        public int MyProperty { get; set; }
-        public int _Clock { get; private set; }
-        public int _Adress { get; private set; }
+        Process _Process;
 
-        public CPU(int Clock)
+        public int MyProperty { get; set; }
+        public int _Clock { get; protected set; }
+        public int _Adress { get; protected set; }
+
+        public CPU(int Clock, Process MyProcess)
         {
             _Clock = Clock;
+            _Process = MyProcess; 
+        }
+
+        public bool Execute()
+        {
+            if (_Process.Ready())
+                return true;
+
+            System.Threading.Thread.Sleep(1000);
+            _Process.ReduceTime();
+            return false;
+
         }
 
     }
