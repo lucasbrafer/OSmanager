@@ -8,6 +8,8 @@ namespace OSmanager
 {
     class Process
     {
+        public int TimeExecuted { get; private set; }
+        public string Status { get; private set; }
         public string _Name { get; private set; }
         public int _Size { get;  private set; }
 
@@ -15,6 +17,7 @@ namespace OSmanager
         {
             _Name = Name;
             _Size = Size;
+            Status = "Waiting";
         }
     }
 }

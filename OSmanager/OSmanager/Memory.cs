@@ -11,18 +11,39 @@ namespace OSmanager
         private Queue<Process> Ram;
 
         private int TotalPages;
+
+        private int BusyPages;
+
+        public int _Capacity { get; private set; }
         public int _SizePages { get; private set; }
 
-        public Memory(int Size)
+        public Memory(int SizePages)
         {
-            _SizePages = Size;
+            _SizePages = SizePages;
+            _Capacity = 1024;
+
+            TotalPages = SizePages % _Capacity;
+            BusyPages = 0;
+
             Ram = new Queue<Process>();
-            TotalPages = 1024 / Size;
+           
         }
+
+        public bool SpaceWritable(int Size)
+        {
+            double Busy = Size / _SizePages;
+
+            if (BusyPages + Math.Ceiling(Busy) < TotalPages)
+                return true;
+            else
+                return false;
+        }
+
 
         public void InitializeProcess(Process MyProcess)
         {
-            Ram.Enqueue(MyProcess);
+            if (SpaceWritable(MyProcess._Size))
+                Ram.Enqueue(MyProcess);                
         }
 
         public void KillProcess(Process MyProcess)
