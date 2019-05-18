@@ -6,13 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace OSmanager
 {
     public partial class FormSO : Form
     {
-        Object Scheduler;
+
+        byte _Type;
 
         FormBase _MyBase;
 
@@ -20,6 +22,27 @@ namespace OSmanager
         {
             DataViewRam.DataSource = Memory.Ram.ToList();
             dataGridVM.DataSource = VirtualMemory.VM.ToList();
+        }
+
+        public void ExecuteFunction()
+        {
+
+            while (true)
+            {
+                //se tiver espaço na memoria para o primeiro processo da memoria virtual
+                if (!VirtualMemory.Empyt())
+                    if (!Memory.MemoryFull(VirtualMemory.FirstLenght()))
+                        Memory.InitializeProcess(VirtualMemory.KillProcess());
+
+                //executar se a memoria não estiver vazia
+                if (!Memory.EmptyProcessUser())
+                {
+                    if (_Type == 0)
+                        FCFS.Execute(Memory.KillProcess());
+                    else
+                        RoudRobin.Execute(Memory.KillProcess());
+                }
+            }
         }
 
         public FormSO(FormBase MyBase, byte Type)
@@ -30,15 +53,14 @@ namespace OSmanager
 
             _MyBase = MyBase;
 
+            _Type = Type;
 
-            if (Type == 0)
-            {
-                Scheduler = new SJF();
-            }
-            else
-            {
-                Scheduler = new RoudRobin(20); ; 
-            }                       
+            timer.Start();
+
+            //executar em looping
+            //Thread MinhaThread = new Thread(ExecuteFunction);
+
+            //MinhaThread.Start();
 
         }
 
@@ -168,6 +190,41 @@ namespace OSmanager
             RefreshData();
         }
 
-        
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            RefreshData();
+
+            //se tiver espaço na memoria para o primeiro processo da memoria virtual
+            if (!VirtualMemory.Empyt())
+                if (!Memory.MemoryFull(VirtualMemory.FirstLenght()))
+                    Memory.InitializeProcess(VirtualMemory.KillProcess());
+
+            //executar se a memoria não estiver vazia
+            if (!Memory.EmptyProcessUser())
+            {
+                //FCFS sem usar classe
+                if (_Type == 0)
+                {
+                    Process p = Memory.KillProcess();
+                    RefreshData();
+                    while (!CPU.Execute(p))
+                    {
+                        ProgressCPU.Increment(1);
+                        RefreshData();
+                    }
+                    //se ja tiver executado completo não necessario enfileirar
+                    if (p.Size != 0)
+                    {
+                        MMU.Translate(p);
+                    }
+                    RefreshData();
+                }
+                //usando a classe -> bug multiplicando
+                else
+                    RoudRobin.Execute(Memory.KillProcess());
+            }
+
+            RefreshData();
+        }
     }
 }

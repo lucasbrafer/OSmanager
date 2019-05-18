@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.RRButton = new System.Windows.Forms.Button();
-            this.SJFButton = new System.Windows.Forms.Button();
+            this.FCFSButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // RRButton
@@ -42,15 +42,15 @@
             this.RRButton.UseVisualStyleBackColor = true;
             this.RRButton.Click += new System.EventHandler(this.RRButton_Click);
             // 
-            // SJFButton
+            // FCFSButton
             // 
-            this.SJFButton.Location = new System.Drawing.Point(141, 12);
-            this.SJFButton.Name = "SJFButton";
-            this.SJFButton.Size = new System.Drawing.Size(106, 95);
-            this.SJFButton.TabIndex = 1;
-            this.SJFButton.Text = "SJF";
-            this.SJFButton.UseVisualStyleBackColor = true;
-            this.SJFButton.Click += new System.EventHandler(this.SJFButton_Click);
+            this.FCFSButton.Location = new System.Drawing.Point(141, 12);
+            this.FCFSButton.Name = "FCFSButton";
+            this.FCFSButton.Size = new System.Drawing.Size(106, 95);
+            this.FCFSButton.TabIndex = 1;
+            this.FCFSButton.Text = "FCFS";
+            this.FCFSButton.UseVisualStyleBackColor = true;
+            this.FCFSButton.Click += new System.EventHandler(this.FCFSButton_Click);
             // 
             // FormBase
             // 
@@ -58,7 +58,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ClientSize = new System.Drawing.Size(259, 117);
-            this.Controls.Add(this.SJFButton);
+            this.Controls.Add(this.FCFSButton);
             this.Controls.Add(this.RRButton);
             this.MaximizeBox = false;
             this.Name = "FormBase";
@@ -69,7 +69,7 @@
         #endregion
 
         private System.Windows.Forms.Button RRButton;
-        private System.Windows.Forms.Button SJFButton;
+        private System.Windows.Forms.Button FCFSButton;
     }
 }
 

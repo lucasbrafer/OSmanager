@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace OSmanager
 {
-    class RoudRobin
+    class FCFS
     {
-        private static int _Time = 20;
-
         public static void Execute(Process process)
         {
-            int i = 0;
-            while (!CPU.Execute(process) && i < _Time)
-                i++;
+            while (!CPU.Execute(process))
 
-            MMU.Translate(process);           
+            MMU.Translate(process);
         }
     }
 }

@@ -10,7 +10,9 @@ namespace OSmanager
     {
         public static void Translate(Process process)
         {
+
             Memory.InitializeProcess(process);
+
         }
     }
 }

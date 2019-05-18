@@ -13,7 +13,7 @@ namespace OSmanager
             if (process.Ready())
                 return true;
 
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(1000);        
             process.ReduceTime();
             return false;
         }

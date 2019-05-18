@@ -18,7 +18,7 @@ namespace OSmanager
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void SJFButton_Click(object sender, EventArgs e)
+        private void FCFSButton_Click(object sender, EventArgs e)
         {
             FormSO Interface = new FormSO(this, 0);
             Interface.Show();

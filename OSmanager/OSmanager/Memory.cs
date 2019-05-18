@@ -12,23 +12,34 @@ namespace OSmanager
 
         public static double Capacity = 1024;
 
-        public static double Length = 1024 * 0.2; 
+        public static double Length = 1024 * 0.2;
+
+        private static int cont = 0;
 
         public static void InitializeProcess(Process MyProcess)
         {
-            Length += MyProcess.Size;
-            Ram.Enqueue(MyProcess);
+            if (MyProcess.Size + Length <= Capacity)
+            {
+                Length += MyProcess.Size;
+                cont++;
+                Ram.Enqueue(MyProcess);
+            }
+            else
+            {
+                VirtualMemory.InitializeProcess(MyProcess);
+            }
         }
 
         public static bool MemoryFull(int ProcessSize)
         {
-            return Length + ProcessSize >= Capacity;
+            return Length + ProcessSize > Capacity;
         }
 
         public static Process KillProcess()
         {
             Process temp = Ram.Dequeue();
             Length -= temp.Size;
+            cont--;
             return temp;
         }
 
@@ -36,6 +47,12 @@ namespace OSmanager
         {
             return Ram;
         }
+
+        public static bool EmptyProcessUser()
+        {
+            return cont == 0;
+        }
+
 
 
     }

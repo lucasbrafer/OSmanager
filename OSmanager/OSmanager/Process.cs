@@ -19,7 +19,7 @@ namespace OSmanager
 
         public void ReduceTime()
         {
-            Time = -1;
+            Time = Time -1;
         }
 
     }

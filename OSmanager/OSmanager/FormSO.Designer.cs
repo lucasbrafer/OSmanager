@@ -41,13 +41,14 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.dataGridVM = new System.Windows.Forms.DataGridView();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.processBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.memoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridVM = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DataViewRam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridVM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoryBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridVM)).BeginInit();
             this.SuspendLayout();
             // 
             // ProgressCPU
@@ -64,6 +65,7 @@
             this.DataViewRam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataViewRam.Location = new System.Drawing.Point(913, 48);
             this.DataViewRam.Name = "DataViewRam";
+            this.DataViewRam.RowHeadersWidth = 20;
             this.DataViewRam.Size = new System.Drawing.Size(195, 309);
             this.DataViewRam.TabIndex = 2;
             // 
@@ -147,6 +149,21 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // dataGridVM
+            // 
+            this.dataGridVM.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridVM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridVM.Location = new System.Drawing.Point(583, 48);
+            this.dataGridVM.Name = "dataGridVM";
+            this.dataGridVM.RowHeadersWidth = 20;
+            this.dataGridVM.Size = new System.Drawing.Size(187, 309);
+            this.dataGridVM.TabIndex = 11;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 10;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // processBindingSource
             // 
             this.processBindingSource.DataSource = typeof(OSmanager.Process);
@@ -154,15 +171,6 @@
             // memoryBindingSource
             // 
             this.memoryBindingSource.DataSource = typeof(OSmanager.Memory);
-            // 
-            // dataGridVM
-            // 
-            this.dataGridVM.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridVM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridVM.Location = new System.Drawing.Point(583, 48);
-            this.dataGridVM.Name = "dataGridVM";
-            this.dataGridVM.Size = new System.Drawing.Size(213, 663);
-            this.dataGridVM.TabIndex = 11;
             // 
             // FormSO
             // 
@@ -185,9 +193,9 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSJFcs_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.DataViewRam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridVM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.processBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoryBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridVM)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -209,5 +217,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.DataGridView dataGridVM;
+        private System.Windows.Forms.Timer timer;
     }
 }
