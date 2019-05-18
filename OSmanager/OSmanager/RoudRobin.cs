@@ -8,21 +8,20 @@ namespace OSmanager
 {
     class RoudRobin
     {
-        private CPU cpu;
+        public static int _Time { get; private set; }
 
-        private int TimeRR;
-
-        public RoudRobin(CPU MyCpu, int Time)
+        public RoudRobin(int Time)
         {
-            TimeRR = Time;
-            cpu = MyCpu;
+            _Time = Time;
         }
 
-        public void Execute()
+        public static void Execute(Process process)
         {
             int i = 0;
-            while (!cpu.Execute() && i < TimeRR)
-                i++;                        
+            while (!CPU.Execute(process) && i < _Time)
+                i++;
+
+            MMU.Translate(process);           
         }
     }
 }

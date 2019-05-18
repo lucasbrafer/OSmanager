@@ -47,11 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CPU.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormBase.Designer.cs">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSO.Designer.cs">
+      <DependentUpon>FormSO.cs</DependentUpon>
     </Compile>
     <Compile Include="Memory.cs" />
     <Compile Include="MMU.cs" />
@@ -60,6 +66,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoudRobin.cs" />
     <Compile Include="SJF.cs" />
+    <Compile Include="VirtualMemory.cs" />
+    <EmbeddedResource Include="FormBase.resx">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSO.resx">
+      <DependentUpon>FormSO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -69,6 +82,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\CPU.datasource" />
+    <None Include="Properties\DataSources\FormBase.datasource" />
+    <None Include="Properties\DataSources\FormSO.datasource" />
+    <None Include="Properties\DataSources\Memory.datasource" />
+    <None Include="Properties\DataSources\MMU.datasource" />
+    <None Include="Properties\DataSources\OSmanager.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\OSmanager.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\Process.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\RoudRobin.datasource" />
+    <None Include="Properties\DataSources\SJF.datasource" />
+    <None Include="Properties\DataSources\VirtualMemory.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

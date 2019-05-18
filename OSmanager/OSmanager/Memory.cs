@@ -8,68 +8,35 @@ namespace OSmanager
 {
     class Memory
     {
-        private Queue<Process> Ram;
+        public static Queue<Process> Ram = new Queue<Process>();
 
-        private int TotalPages;
+        public static double Capacity = 1024;
 
-        private int BusyPages;
+        public static double Length = 1024 * 0.2; 
 
-        private int LastSize;
-
-        public int _Capacity { get; private set; }
-
-        public int _SizePages { get; private set; }
-
-        public Memory(int SizePages)
+        public static void InitializeProcess(Process MyProcess)
         {
-            _SizePages = SizePages;
-            _Capacity = 1024;
-
-            TotalPages = SizePages % _Capacity;
-            BusyPages = 0;
-
-            Ram = new Queue<Process>();
-           
+            Length += MyProcess.Size;
+            Ram.Enqueue(MyProcess);
         }
 
-        public bool SpaceWritable(int Size)
+        public static bool MemoryFull(int ProcessSize)
         {
-            double Busy = Size / _SizePages;
-            Busy = Math.Ceiling(Busy);
-
-            if (BusyPages + Busy < TotalPages)
-            {
-                LastSize = BusyPages;
-                BusyPages +=  Convert.ToInt32(Busy);
-                return true;
-            }
-            else
-                return false;
+            return Length + ProcessSize >= Capacity;
         }
 
-
-        public bool InitializeProcess(Process MyProcess)
+        public static Process KillProcess()
         {
-            if (SpaceWritable(MyProcess._Size))
-            {
-                for (int i = 0; i < LastSize; i++)
-                    Ram.Enqueue(MyProcess);
-
-                return true;
-            }
-            else
-                return false;
-        
+            Process temp = Ram.Dequeue();
+            Length -= temp.Size;
+            return temp;
         }
 
-        public void KillProcess(Process MyProcess)
-        {
-            Ram.Dequeue();
-        }
-
-        public Queue<Process> Queue()
+        public static Queue<Process> QProcess()
         {
             return Ram;
         }
+
+
     }
 }

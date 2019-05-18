@@ -8,26 +8,9 @@ namespace OSmanager
 {
     class MMU
     {
-        public Process _process { get; private set; }
-
-        private Memory Ram;
-
-        public MMU(Memory myRam, Process process)
+        public static void Translate(Process process)
         {
-            Ram = myRam;
-            _process = process;
+            Memory.InitializeProcess(process);
         }
-
-        public void Translate()
-        {
-            if (_process._Size == 0)
-            {
-                _process.Ready();
-            }
-
-            Ram.InitializeProcess(_process);
-        }
-
-
     }
 }

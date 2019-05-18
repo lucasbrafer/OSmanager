@@ -8,31 +8,19 @@ namespace OSmanager
 {
     class Process
     {
-        public int TimeExecuted { get; private set; }
-        public string Status { get; private set; }
-        public string _Name { get; private set; }
-        public int _Size { get;  private set; }
-
-        public Process(string Name, int Size)
-        {
-            _Name = Name;
-            _Size = Size;
-            Status = "Waiting";
-        }
+        public int Time { get; set; }
+        public string Name { get; set; }
+        public int Size { get; set; }
 
         public bool Ready()
         {
-            return TimeExecuted == 0;
+            return Time == 0;
         }
 
         public void ReduceTime()
         {
-            TimeExecuted = -1;
+            Time = -1;
         }
 
-        public void SetReady()
-        {
-            Status = "Ready";
-        }
     }
 }

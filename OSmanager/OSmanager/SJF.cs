@@ -8,21 +8,28 @@ namespace OSmanager
 {
     class SJF
     {
-        private CPU cpu;
-
-        private Queue<Process> Ram;
-
-        private int TimeRR;
-
-        public SJF(CPU MyCpu, Queue<Process> MyRam)
+        public void Execute(Process process)
         {
-            cpu = MyCpu;
-            Ram = MyRam;
-        }
+            int menor = int.MaxValue;
+            int i = 0;
 
-        public void Execute()
-        {
-            
+            foreach (Process x in Memory.Ram)
+                if (menor > x.Time)
+                    menor = x.Time;
+
+            Process temp;
+
+            foreach (Process x in Memory.Ram)
+                if (menor == x.Time)
+                {
+                    temp = x;
+                    break;
+                }
+
+            while (!CPU.Execute(process))
+                i++;
+
+            MMU.Translate(process);
         }
     }
 }

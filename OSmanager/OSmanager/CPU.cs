@@ -8,28 +8,14 @@ namespace OSmanager
 {
     class CPU
     {
-        Process _Process;
-
-        public int MyProperty { get; set; }
-        public int _Clock { get; protected set; }
-        public int _Adress { get; protected set; }
-
-        public CPU(int Clock, Process MyProcess)
+        public static bool Execute(Process process)
         {
-            _Clock = Clock;
-            _Process = MyProcess; 
-        }
-
-        public bool Execute()
-        {
-            if (_Process.Ready())
+            if (process.Ready())
                 return true;
 
             System.Threading.Thread.Sleep(1000);
-            _Process.ReduceTime();
+            process.ReduceTime();
             return false;
-
         }
-
     }
 }
