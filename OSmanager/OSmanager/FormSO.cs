@@ -7,7 +7,6 @@ namespace OSmanager
 {
     public partial class FormSO : Form
     {
-
         byte _Type;
 
         FormBase _MyBase;
@@ -22,20 +21,43 @@ namespace OSmanager
             //executar se a memoria não estiver vazia
             if (!Memory.EmptyProcessUser())
             {
+                //tira processo da fila
                 Process p = Memory.KillProcess();
+                RefreshData();
+
+                //progressbar CPU
                 ProgressCPU.Value = 0;
-                ProgressCPU.Maximum = p.Size;
+                ProgressCPU.Maximum = p.Time;
+
+                //nome do processo na cpu
                 lblName.Text = p.Name;
-                while (!CPU.Execute(ref p) && p.Size >= 0)
+
+                while (!CPU.Execute(ref p))
                 {
+                    //tempo do processo na cpu
                     lblTime.Text = p.Time.ToString();
+
+                    //tempo de execução
                     Thread MinhaThread = new Thread(ThTimer);
                     MinhaThread.Start();
+
                     ProgressCPU.Increment(1);
                 }
-                MMU.Translate(ref p,p.Size);
+
+                //MMU traduz
+                MMU.Translate(ref p);
+
+                //reseta progressBar CPU
                 ProgressCPU.Value = 0;
+
+
+                //reseta nome e tempo CPU
+                lblName.Text = "";
+                lblTime.Text = "";
+
+
             }
+            //começa novamente o timer que irá chamar os escalonadores
             TimerCPU.Start();
         }
 
@@ -43,20 +65,47 @@ namespace OSmanager
         {
             if (!Memory.EmptyProcessUser())
             {
+                //tira processo da fila
                 Process p = Memory.KillProcess();
+                RefreshData();
+
+                //Progressbar CPU
                 ProgressCPU.Value = 0;
-                ProgressCPU.Maximum = p.Size;
-                int i = 0;
-                while (!CPU.Execute(ref p) && p.Size >= 0 && i <= 20)
+                ProgressCPU.Maximum = p.Time;
+
+                //Nome do processo na CPU
+                lblName.Text = p.Name;
+
+                int i = 1;
+                while (i <= 20)
                 {
+                    //executa se for true break 
+                    if (CPU.Execute(ref p))
+                        break;
+
+                    //tempo do processo na CPU
+                    lblTime.Text = p.Time.ToString();
+                    RefreshData();
+
+                    //tempo de execução 
                     Thread MinhaThread = new Thread(ThTimer);
                     MinhaThread.Start();
+
                     ProgressCPU.Increment(1);
                     i++;
                 }
-                MMU.Translate(ref p, p.Size);
+
+                //mmu traduz
+                MMU.Translate(ref p);
                 ProgressCPU.Value = 0;
+
+                //reseta nome e tempo CPU
+                lblName.Text = "";
+                lblTime.Text = "";
+
             }
+
+            //começa novamente o timer que irá chamar os escalonadores
             TimerCPU.Start();
         }
 

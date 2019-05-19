@@ -13,7 +13,7 @@ namespace OSmanager
         {
             while (!CPU.Execute(ref process))
 
-            MMU.Translate(ref process,process.Size);
+            MMU.Translate(ref process);
         }
     }
 }

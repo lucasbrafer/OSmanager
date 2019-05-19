@@ -17,11 +17,11 @@ namespace OSmanager
             //process.ReduceTime();
             //return false;
 
-            if (process.Size == 0)
+            if (process.Time == 0)
                 return true;
             else
             {
-                process.Size -= 1;
+                process.Time -= 1;
                 return false;
             }
             

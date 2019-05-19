@@ -47,8 +47,8 @@
             this.TimerCPU = new System.Windows.Forms.Timer(this.components);
             this.PBmemory = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblName = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.processBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.memoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataViewRam)).BeginInit();
@@ -188,6 +188,7 @@
             this.PBmemory.Name = "PBmemory";
             this.PBmemory.Size = new System.Drawing.Size(195, 23);
             this.PBmemory.TabIndex = 12;
+            this.PBmemory.Tag = "";
             // 
             // panel1
             // 
@@ -198,15 +199,6 @@
             this.panel1.Size = new System.Drawing.Size(99, 93);
             this.panel1.TabIndex = 13;
             // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(27, 18);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(0, 16);
-            this.lblName.TabIndex = 0;
-            // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
@@ -215,6 +207,15 @@
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(0, 16);
             this.lblTime.TabIndex = 1;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(27, 18);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(0, 16);
+            this.lblName.TabIndex = 0;
             // 
             // processBindingSource
             // 
