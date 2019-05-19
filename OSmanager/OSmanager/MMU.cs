@@ -8,11 +8,14 @@ namespace OSmanager
 {
     class MMU
     {
-        public static void Translate(Process process)
+        public static void Translate(ref Process process, int size)
         {
+            process.Size = size;
 
-            Memory.InitializeProcess(process);
-
+            if (size > 0)
+            {
+                Memory.InitializeProcess(process);
+            }
         }
     }
 }

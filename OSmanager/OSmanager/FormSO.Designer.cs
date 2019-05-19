@@ -43,8 +43,11 @@
             this.button8 = new System.Windows.Forms.Button();
             this.dataGridVM = new System.Windows.Forms.DataGridView();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.RefreshAutoT = new System.Windows.Forms.Timer(this.components);
+            this.TimerCPU = new System.Windows.Forms.Timer(this.components);
             this.processBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.memoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PBmemory = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.DataViewRam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processBindingSource)).BeginInit();
@@ -53,7 +56,7 @@
             // 
             // ProgressCPU
             // 
-            this.ProgressCPU.Location = new System.Drawing.Point(1242, 48);
+            this.ProgressCPU.Location = new System.Drawing.Point(1211, 48);
             this.ProgressCPU.Name = "ProgressCPU";
             this.ProgressCPU.Size = new System.Drawing.Size(105, 99);
             this.ProgressCPU.TabIndex = 1;
@@ -161,8 +164,19 @@
             // 
             // timer
             // 
-            this.timer.Interval = 10;
+            this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // RefreshAutoT
+            // 
+            this.RefreshAutoT.Enabled = true;
+            this.RefreshAutoT.Interval = 500;
+            this.RefreshAutoT.Tick += new System.EventHandler(this.RefreshAutoT_Tick);
+            // 
+            // TimerCPU
+            // 
+            this.TimerCPU.Interval = 1000;
+            this.TimerCPU.Tick += new System.EventHandler(this.TimerCPU_Tick);
             // 
             // processBindingSource
             // 
@@ -172,12 +186,20 @@
             // 
             this.memoryBindingSource.DataSource = typeof(OSmanager.Memory);
             // 
+            // PBmemory
+            // 
+            this.PBmemory.Location = new System.Drawing.Point(913, 363);
+            this.PBmemory.Name = "PBmemory";
+            this.PBmemory.Size = new System.Drawing.Size(195, 23);
+            this.PBmemory.TabIndex = 12;
+            // 
             // FormSO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.PBmemory);
             this.Controls.Add(this.dataGridVM);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -205,7 +227,6 @@
         private System.Windows.Forms.BindingSource memoryBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeExecutedDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource processBindingSource;
-        private System.Windows.Forms.ProgressBar ProgressCPU;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DataGridView DataViewRam;
         private System.Windows.Forms.Button button1;
@@ -218,5 +239,9 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.DataGridView dataGridVM;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer RefreshAutoT;
+        public System.Windows.Forms.Timer TimerCPU;
+        public System.Windows.Forms.ProgressBar ProgressCPU;
+        private System.Windows.Forms.ProgressBar PBmemory;
     }
 }

@@ -8,14 +8,23 @@ namespace OSmanager
 {
     class CPU
     {
-        public static bool Execute(Process process)
+        public static bool Execute(ref Process process)
         {
-            if (process.Ready())
-                return true;
+            //erro de ao usar esses metodos stack overflow
+            //if (process.Ready())
+            //    return true;
 
-            System.Threading.Thread.Sleep(1000);        
-            process.ReduceTime();
-            return false;
+            //process.ReduceTime();
+            //return false;
+
+            if (process.Size == 0)
+                return true;
+            else
+            {
+                process.Size -= 1;
+                return false;
+            }
+            
         }
     }
 }

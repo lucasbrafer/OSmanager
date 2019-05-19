@@ -37,6 +37,9 @@ namespace OSmanager
 
         public static Process KillProcess()
         {
+            if (EmptyProcessUser())
+                return null;
+
             Process temp = Ram.Dequeue();
             Length -= temp.Size;
             cont--;

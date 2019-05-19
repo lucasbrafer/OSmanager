@@ -11,9 +11,9 @@ namespace OSmanager
     {
         public static void Execute(Process process)
         {
-            while (!CPU.Execute(process))
+            while (!CPU.Execute(ref process))
 
-            MMU.Translate(process);
+            MMU.Translate(ref process,process.Size);
         }
     }
 }

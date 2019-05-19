@@ -13,10 +13,10 @@ namespace OSmanager
         public static void Execute(Process process)
         {
             int i = 0;
-            while (!CPU.Execute(process) && i < _Time)
+            while (!CPU.Execute(ref process) && i < _Time)
                 i++;
 
-            MMU.Translate(process);           
+            MMU.Translate(ref process,process.Size);           
         }
     }
 }
