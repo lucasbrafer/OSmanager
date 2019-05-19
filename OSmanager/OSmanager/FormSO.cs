@@ -25,8 +25,10 @@ namespace OSmanager
                 Process p = Memory.KillProcess();
                 ProgressCPU.Value = 0;
                 ProgressCPU.Maximum = p.Size;
+                lblName.Text = p.Name;
                 while (!CPU.Execute(ref p) && p.Size >= 0)
                 {
+                    lblTime.Text = p.Time.ToString();
                     Thread MinhaThread = new Thread(ThTimer);
                     MinhaThread.Start();
                     ProgressCPU.Increment(1);

@@ -45,20 +45,24 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.RefreshAutoT = new System.Windows.Forms.Timer(this.components);
             this.TimerCPU = new System.Windows.Forms.Timer(this.components);
+            this.PBmemory = new System.Windows.Forms.ProgressBar();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             this.processBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.memoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.PBmemory = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.DataViewRam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVM)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.processBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ProgressCPU
             // 
-            this.ProgressCPU.Location = new System.Drawing.Point(1211, 48);
+            this.ProgressCPU.Location = new System.Drawing.Point(1294, 48);
             this.ProgressCPU.Name = "ProgressCPU";
-            this.ProgressCPU.Size = new System.Drawing.Size(105, 99);
+            this.ProgressCPU.Size = new System.Drawing.Size(22, 93);
             this.ProgressCPU.TabIndex = 1;
             this.ProgressCPU.Tag = "";
             // 
@@ -178,6 +182,40 @@
             this.TimerCPU.Interval = 1000;
             this.TimerCPU.Tick += new System.EventHandler(this.TimerCPU_Tick);
             // 
+            // PBmemory
+            // 
+            this.PBmemory.Location = new System.Drawing.Point(913, 363);
+            this.PBmemory.Name = "PBmemory";
+            this.PBmemory.Size = new System.Drawing.Size(195, 23);
+            this.PBmemory.TabIndex = 12;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblTime);
+            this.panel1.Controls.Add(this.lblName);
+            this.panel1.Location = new System.Drawing.Point(1189, 48);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(99, 93);
+            this.panel1.TabIndex = 13;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(27, 18);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(0, 16);
+            this.lblName.TabIndex = 0;
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(27, 50);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(0, 16);
+            this.lblTime.TabIndex = 1;
+            // 
             // processBindingSource
             // 
             this.processBindingSource.DataSource = typeof(OSmanager.Process);
@@ -186,19 +224,13 @@
             // 
             this.memoryBindingSource.DataSource = typeof(OSmanager.Memory);
             // 
-            // PBmemory
-            // 
-            this.PBmemory.Location = new System.Drawing.Point(913, 363);
-            this.PBmemory.Name = "PBmemory";
-            this.PBmemory.Size = new System.Drawing.Size(195, 23);
-            this.PBmemory.TabIndex = 12;
-            // 
             // FormSO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.PBmemory);
             this.Controls.Add(this.dataGridVM);
             this.Controls.Add(this.button8);
@@ -216,6 +248,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSJFcs_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.DataViewRam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVM)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.processBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoryBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -243,5 +277,8 @@
         public System.Windows.Forms.Timer TimerCPU;
         public System.Windows.Forms.ProgressBar ProgressCPU;
         private System.Windows.Forms.ProgressBar PBmemory;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblTime;
     }
 }
